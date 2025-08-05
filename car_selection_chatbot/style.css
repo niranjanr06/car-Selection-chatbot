@@ -1,0 +1,100 @@
+/* Background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #dfe9f3, #ffffff);
+    /* Optional: Background image */
+     background-image: url('chatbg.jpg');
+       background-size: cover;
+       background-position: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Chat Container */
+.chatbox {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.55); /* 0.85 means 85% opaque */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Chat Logs */
+.chatlogs {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Scrollbar Styling */
+.chatlogs::-webkit-scrollbar {
+    width: 6px;
+}
+.chatlogs::-webkit-scrollbar-thumb {
+    background-color: #bbb;
+    border-radius: 10px;
+}
+
+/* Message Bubbles */
+.user-msg, .bot-msg {
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 80%;
+    word-wrap: break-word;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.user-msg {
+    background-color: #a7e0ff;
+    align-self: flex-end;
+    color: #003049;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bot-msg {
+    background-color: #f1f1f1;
+    align-self: flex-start;
+    color: #333;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Form Styling */
+#chat-form {
+    display: flex;
+    gap: 10px;
+}
+
+#message {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+}
+
+button {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}

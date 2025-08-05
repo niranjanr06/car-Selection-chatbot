@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Selection Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chatbox">
+        <div class="chatlogs" id="chatlogs"></div>
+        <form id="chat-form" method="post">
+            <input type="text" id="message" placeholder="Type your answer..." autocomplete="off" required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script>
+document.getElementById("chat-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const msg = document.getElementById("message").value;
+    const logs = document.getElementById("chatlogs");
+
+    const userMsg = document.createElement("div");
+    userMsg.className = "user-msg";
+    userMsg.textContent = msg;
+    logs.appendChild(userMsg);
+
+    const res = await fetch("chat.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "message=" + encodeURIComponent(msg)
+    });
+
+    const reply = await res.text();
+    const botMsg = document.createElement("div");
+    botMsg.className = "bot-msg";
+    botMsg.innerHTML = reply;
+    logs.appendChild(botMsg);
+
+    document.getElementById("message").value = "";
+    logs.scrollTop = logs.scrollHeight;
+});
+
+// Start conversation on page load
+window.onload = async function () {
+    const logs = document.getElementById("chatlogs");
+
+    const botMsg1 = document.createElement("div");
+    botMsg1.className = "bot-msg";
+    botMsg1.textContent = "🚗 Hello! I'm your Car Selection Assistant. Let's find the perfect car for you.";
+    logs.appendChild(botMsg1);
+
+    const res = await fetch("chat.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "message=start"
+    });
+
+    const reply = await res.text();
+    const botMsg2 = document.createElement("div");
+    botMsg2.className = "bot-msg";
+    botMsg2.innerHTML = reply;
+    logs.appendChild(botMsg2);
+
+    logs.scrollTop = logs.scrollHeight;
+};
+</script>
+
+</body>
+</html>
